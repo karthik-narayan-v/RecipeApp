@@ -36,4 +36,5 @@ jobs:
         run: |
           gh workflow run build.yml -R karthik-narayan-v/RecipeApp-Build -f version=${{ env.VERSION }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BUILD_REPO_PAT }}
+
