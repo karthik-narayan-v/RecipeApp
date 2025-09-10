@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type Recipe = {
+export type Recipe = {
   id: number;
   name: string;
   image: string;
-  caloriesPerServings: number;
+  caloriesPerServing: number;
   cookTimeMinutes: number;
   isLiked: boolean;
   ingredients: string[];

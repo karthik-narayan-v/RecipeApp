@@ -1,14 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useEffect } from "react";
+import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+
+import { RootStackParamList } from "../../App";
 import { fetchRecipes } from "../api/api";
-import { setRecipes } from "../store/recipeSlice";
-import { Box, FlatList, Heading, Image, VStack } from "native-base";
+import RecipeCard from "../components/RecipeCard";
+import { RootState } from "../store";
+import { Recipe, setRecipes } from "../store/recipeSlice";
+
+type RecipeListNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "RecipeList"
+>;
 
 const RecipeList = () => {
   const dispatch = useDispatch();
   const recipes = useSelector((state: RootState) => state.recipe.recipes);
-  console.log(recipes);
+  const navigation = useNavigation<RecipeListNavigationProp>();
 
   useEffect(() => {
     const loadRecipes = async () => {
@@ -21,29 +31,44 @@ const RecipeList = () => {
     };
     loadRecipes();
   }, [dispatch]);
+
+  const handleToggle = () => {};
+
+  const renderItem = ({ item }: { item: Recipe }) => (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("RecipeDetail", { id: item.id });
+      }}
+    >
+      <RecipeCard
+        name={item.name}
+        image={item.image}
+        cookTimeMinutes={item.cookTimeMinutes}
+        caloriesPerServing={item.caloriesPerServing}
+        isLiked={item.isLiked}
+        onLikeToggle={handleToggle}
+      />
+    </TouchableOpacity>
+  );
+
   return (
     <FlatList
-      width={"full"}
-
       data={recipes}
-      bgColor={"white"}
       keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => (
-        <VStack width={"full"} height={"auto"} px={4}>
-          <Image
-            source={{ uri: item.image }}
-            alt="Recipe Image"
-            height={"xs"}
-            width={"xl"}
-            borderTopRadius={8}
-          />
-          <Heading size={"md"} textAlign={"center"} py={2}>
-            {item.name}
-          </Heading>
-        </VStack>
-      )}
+      renderItem={renderItem}
+      contentContainerStyle={styles.listContainer}
+      initialNumToRender={5}
+      maxToRenderPerBatch={5}
+      windowSize={10}
     />
   );
 };
+
+const styles = StyleSheet.create({
+  listContainer: {
+    paddingVertical: 8,
+    backgroundColor: "white",
+  },
+});
 
 export default RecipeList;
