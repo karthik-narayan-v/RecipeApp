@@ -1,24 +1,27 @@
-import { Provider } from "react-redux";
-import { store } from "./src/store";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { Provider } from "react-redux";
+
 import RecipeDetail from "./src/screens/RecipeDetail";
 import RecipeList from "./src/screens/RecipeList";
-import { NativeBaseProvider } from "native-base";
+import { store } from "./src/store";
+
+export type RootStackParamList = {
+  RecipeList: undefined;
+  RecipeDetail: { id: number };
+};
 
 export default function App() {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<RootStackParamList>();
 
   return (
     <Provider store={store}>
-      <NativeBaseProvider>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="RecipeList">
-            <Stack.Screen name="RecipeList" component={RecipeList} />
-            <Stack.Screen name="RecipeDetail" component={RecipeDetail} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </NativeBaseProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="RecipeList">
+          <Stack.Screen name="RecipeList" component={RecipeList} />
+          <Stack.Screen name="RecipeDetail" component={RecipeDetail} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
