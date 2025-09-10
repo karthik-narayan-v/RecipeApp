@@ -9,7 +9,7 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Bump version and create tag
@@ -22,16 +22,15 @@ jobs:
           git tag $VERSION
           git push origin $VERSION
 
-      - name: Upload tag to build repo
+      - name: Checkout build repo
         uses: actions/checkout@v4
         with:
-          repository: your-org/build-repo
+          repository: karthik-narayan-v/RecipeApp-Build
           token: ${{ secrets.GITHUB_TOKEN }}
           path: build-repo
-        continue-on-error: true
 
-      - name: Trigger build repo workflow
+      - name: Trigger build workflow
         run: |
-          gh workflow run build.yml -R your-org/build-repo -f version=${{ env.VERSION }}
+          gh workflow run build.yml -R karthik-narayan-v/RecipeApp-Build -f version=${{ env.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
