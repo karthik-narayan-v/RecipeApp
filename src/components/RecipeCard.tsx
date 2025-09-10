@@ -34,7 +34,7 @@ const RecipeCard = ({
   const [liked, setLiked] = useState(isLiked);
 
   const handleToggle = () => {
-    setLiked((prev) => !prev); 
+    setLiked((prev) => !prev);
     onLikeToggle?.();
   };
   return (
