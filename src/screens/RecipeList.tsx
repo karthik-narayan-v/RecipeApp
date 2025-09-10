@@ -32,8 +32,6 @@ const RecipeList = () => {
     loadRecipes();
   }, [dispatch]);
 
-  const handleToggle = () => {};
-
   const renderItem = ({ item }: { item: Recipe }) => (
     <TouchableOpacity
       onPress={() => {
@@ -41,12 +39,11 @@ const RecipeList = () => {
       }}
     >
       <RecipeCard
+        id={item.id}
         name={item.name}
         image={item.image}
         cookTimeMinutes={item.cookTimeMinutes}
         caloriesPerServing={item.caloriesPerServing}
-        isLiked={item.isLiked}
-        onLikeToggle={handleToggle}
       />
     </TouchableOpacity>
   );

@@ -1,5 +1,4 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
 import {
   View,
   Text,
@@ -8,37 +7,42 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 import HeartFilled from "../../assets/svg/heart_filled.svg";
 import HeartUnfilled from "../../assets/svg/heart_unfilled.svg";
+import { RootState } from "../store";
+import { toggleLike } from "../store/recipeSlice";
 
 const { width } = Dimensions.get("window");
 
 interface RecipeCardProps {
+  id: number;
   name: string;
   image: string;
   cookTimeMinutes: number;
   caloriesPerServing: number;
-  isLiked: boolean;
-  onLikeToggle?: () => void;
+  disableShadow?: boolean;
 }
 
 const RecipeCard = ({
+  id,
   name,
   image,
   cookTimeMinutes,
   caloriesPerServing,
-  isLiked,
-  onLikeToggle,
+  disableShadow = false,
 }: RecipeCardProps) => {
-  const [liked, setLiked] = useState(isLiked);
-
+  const dispatch = useDispatch();
+  const isLiked = useSelector(
+    (state: RootState) =>
+      state.recipe.recipes.find((recipe) => recipe.id === id)?.isLiked ?? false,
+  );
   const handleToggle = () => {
-    setLiked((prev) => !prev);
-    onLikeToggle?.();
+    dispatch(toggleLike(id));
   };
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, disableShadow && styles.cardNoShadow]}>
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: image }}
@@ -60,7 +64,7 @@ const RecipeCard = ({
               </Text>
 
               <TouchableOpacity onPress={handleToggle}>
-                {liked ? (
+                {isLiked ? (
                   <HeartFilled width={16} height={16} />
                 ) : (
                   <HeartUnfilled width={16} height={16} />
@@ -92,6 +96,16 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+  },
+  cardNoShadow: {
+    elevation: 0,
+    shadowColor: "transparent",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
   },
   imageContainer: {
     position: "relative",
