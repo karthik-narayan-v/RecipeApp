@@ -61,9 +61,9 @@ const RecipeCard = ({
 
               <TouchableOpacity onPress={handleToggle}>
                 {liked ? (
-                  <HeartFilled width={24} height={24} />
+                  <HeartFilled width={16} height={16} />
                 ) : (
-                  <HeartUnfilled width={24} height={24} />
+                  <HeartUnfilled width={16} height={16} />
                 )}
               </TouchableOpacity>
             </View>
@@ -81,19 +81,25 @@ const styles = StyleSheet.create({
     width: width - 32,
     alignSelf: "center",
     marginBottom: 16,
+    marginHorizontal: 4,
     borderRadius: 8,
-    overflow: "hidden",
     backgroundColor: "white",
-    elevation: 2,
+    elevation: 4,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   imageContainer: {
     position: "relative",
     width: "100%",
-    height: 150,
+    height: 225,
+    overflow: "hidden",
+    borderTopStartRadius: 8,
+    borderTopEndRadius: 8,
   },
   image: {
     width: "100%",
@@ -105,28 +111,24 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: 80,
-    flexDirection: "column",
+    justifyContent: "flex-end",
   },
   infoRow: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingHorizontal: 8,
+    paddingBottom: 6,
     alignItems: "center",
-    zIndex: 1,
   },
   infoText: {
+    fontWeight: "700",
     fontSize: 14,
   },
   infoTextLight: {
     color: "#fff",
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
     paddingVertical: 8,
@@ -136,7 +138,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    padding: 8,
     zIndex: 1,
   },
 });

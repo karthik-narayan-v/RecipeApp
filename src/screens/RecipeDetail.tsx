@@ -10,7 +10,7 @@ const RecipeDetail = () => {
   const { id } = route.params;
   return (
     <View style={styles.container}>
-      <Text>Recipe ID: {id}</Text>
+      <Text>Recipe Id: {id}</Text>
     </View>
   );
 };
