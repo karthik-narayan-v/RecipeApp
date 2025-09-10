@@ -1,11 +1,9 @@
 name: Lint Check
 
 on:
-  pull_request:
-    branches: [main]
   push:
-    branches: ["feature/*", "bugfix/*"]
-
+    branches:
+      - "**"
 jobs:
   lint:
     runs-on: ubuntu-latest
