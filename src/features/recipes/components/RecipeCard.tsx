@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import HeartFilled from "../../assets/svg/heart_filled.svg";
 import HeartUnfilled from "../../assets/svg/heart_unfilled.svg";
-import { RootState } from "../store";
-import { toggleLike } from "../store/recipeSlice";
+import { RootState } from "../../../store";
+import { toggleLike } from "../../../store/recipeSlice";
 
 const { width } = Dimensions.get("window");
 

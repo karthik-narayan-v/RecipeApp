@@ -9,12 +9,12 @@ import {
   ScrollView,
 } from "react-native";
 
-import { RootStackParamList } from "../App";
-import { fetchRecipeById } from "../api/api";
+import { RecipeStackParamList } from "../../../navigation/recipe/navigator";
+import { fetchRecipeById } from "../../../api/api";
 import RecipeCard from "../components/RecipeCard";
-import { Recipe } from "../store/recipeSlice";
+import { Recipe } from "../../../store/recipeSlice";
 
-type RecipeDetailRouteProp = RouteProp<RootStackParamList, "RecipeDetail">;
+type RecipeDetailRouteProp = RouteProp<RecipeStackParamList, "RecipeDetail">;
 
 const Tab = createMaterialTopTabNavigator();
 

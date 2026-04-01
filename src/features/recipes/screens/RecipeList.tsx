@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import { RootStackParamList } from "../App";
-import { fetchRecipes } from "../api/api";
+import { RecipeStackParamList } from "../../../navigation/recipe/navigator";
+import { fetchRecipes } from "../../../api/api";
 import RecipeCard from "../components/RecipeCard";
-import { RootState } from "../store";
-import { Recipe, setRecipes } from "../store/recipeSlice";
+import { RootState } from "../../../store";
+import { Recipe, setRecipes } from "../../../store/recipeSlice";
 
 type RecipeListNavigationProp = StackNavigationProp<
-  RootStackParamList,
+  RecipeStackParamList,
   "RecipeList"
 >;
 

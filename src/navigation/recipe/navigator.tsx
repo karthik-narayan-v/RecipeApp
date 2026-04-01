@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import RecipeList from "../../screens/RecipeList";
-import RecipeDetail from "../../screens/RecipeDetail";
+import RecipeList from "../../features/recipes/screens/RecipeList";
+import RecipeDetail from "../../features/recipes/screens/RecipeDetail";
 
 export type RecipeStackParamList = {
   RecipeList: undefined;
