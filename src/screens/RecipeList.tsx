@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../App";
 import { fetchRecipes } from "../api/api";
 import RecipeCard from "../components/RecipeCard";
 import { RootState } from "../store";

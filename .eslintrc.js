@@ -53,6 +53,8 @@ module.exports = {
     ],
     "import/namespace": "off",
     "import/no-unresolved": ["error", { ignore: ["^react-native$"] }],
+    "import/no-dynamic-require": "off",
+    "import/no-commonjs": "off",
     "no-duplicate-imports": "error",
   },
   settings: {

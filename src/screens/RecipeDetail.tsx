@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../App";
 import { fetchRecipeById } from "../api/api";
 import RecipeCard from "../components/RecipeCard";
 import { Recipe } from "../store/recipeSlice";
