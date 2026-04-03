@@ -6,6 +6,7 @@ import { FontProvider } from "./providers/FontProvider";
 import { store } from "./store";
 import { NavigationContainer } from "@react-navigation/native";
 import RootNavigator from "./navigation/RootNavigator";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 ExpoSplash.preventAutoHideAsync();
 
@@ -37,12 +38,14 @@ export default function App() {
   }
 
   return (
-    <FontProvider>
-      <Provider store={store}>
-        <NavigationContainer>
-          <RootNavigator />
-        </NavigationContainer>
-      </Provider>
-    </FontProvider>
+    <SafeAreaProvider>
+      <FontProvider>
+        <Provider store={store}>
+          <NavigationContainer>
+            <RootNavigator />
+          </NavigationContainer>
+        </Provider>
+      </FontProvider>
+    </SafeAreaProvider>
   );
 }

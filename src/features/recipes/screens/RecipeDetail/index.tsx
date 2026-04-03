@@ -9,10 +9,10 @@ import {
   ScrollView,
 } from "react-native";
 
-import { RecipeStackParamList } from "../../../navigation/recipe/navigator";
-import { fetchRecipeById } from "../../../api/api";
-import RecipeCard from "../components/RecipeCard";
-import { Recipe } from "../../../store/recipeSlice";
+import { RecipeStackParamList } from "../../../../navigation/recipe/navigator";
+import { fetchRecipeById } from "../../../../api/api";
+import RecipeCard from "../../components/RecipeCard";
+import { Recipe } from "../../../../store/recipeSlice";
 
 type RecipeDetailRouteProp = RouteProp<RecipeStackParamList, "RecipeDetail">;
 

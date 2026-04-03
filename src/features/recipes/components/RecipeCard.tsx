@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import HeartFilled from "../../assets/svg/heart_filled.svg";
-import HeartUnfilled from "../../assets/svg/heart_unfilled.svg";
+import HeartFilled from "../../../assets/icons/heart_filled.svg";
+import HeartUnfilled from "../../../assets/icons/heart_unfilled.svg";
 import { RootState } from "../../../store";
 import { toggleLike } from "../../../store/recipeSlice";
 
