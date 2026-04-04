@@ -7,6 +7,13 @@ export type Recipe = {
   caloriesPerServing: number;
   cookTimeMinutes: number;
   isLiked: boolean;
+  tags: string[];
+  rating: number;
+  cuisine: string;
+  reviewCount: number;
+  prepTimeMinutes: number;
+  servings: number;
+  difficulty: string;
   ingredients: string[];
   instructions: string[];
 };

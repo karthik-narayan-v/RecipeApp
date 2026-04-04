@@ -9,6 +9,7 @@ import { fetchRecipes } from "../../../../api/api";
 import RecipeCard from "../../components/RecipeCard";
 import { RootState } from "../../../../store";
 import { Recipe, setRecipes } from "../../../../store/recipeSlice";
+import { theme } from "../../../../theme";
 
 type RecipeListNavigationProp = StackNavigationProp<
   RecipeStackParamList,
@@ -64,7 +65,7 @@ const RecipeList = () => {
 const styles = StyleSheet.create({
   listContainer: {
     paddingVertical: 8,
-    backgroundColor: "white",
+    backgroundColor: theme.colors.white,
   },
 });
 

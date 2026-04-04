@@ -13,6 +13,7 @@ import HeartFilled from "../../../assets/icons/heart_filled.svg";
 import HeartUnfilled from "../../../assets/icons/heart_unfilled.svg";
 import { RootState } from "../../../store";
 import { toggleLike } from "../../../store/recipeSlice";
+import { theme } from "../../../theme";
 
 const { width } = Dimensions.get("window");
 
@@ -44,11 +45,11 @@ const RecipeCard = ({
   return (
     <View style={[styles.card, disableShadow && styles.cardNoShadow]}>
       <View style={styles.imageContainer}>
-        <Image
+        {/* <Image
           source={{ uri: image }}
           style={styles.image}
           resizeMode="cover"
-        />
+        /> */}
 
         <View style={styles.gradientContainer}>
           <LinearGradient
@@ -87,9 +88,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginHorizontal: 4,
     borderRadius: 8,
-    backgroundColor: "white",
+    backgroundColor: theme.colors.white,
     elevation: 4,
-    shadowColor: "#000",
+    shadowColor: theme.colors.black,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   infoTextLight: {
-    color: "#fff",
+    color: theme.colors.white,
   },
   title: {
     fontSize: 16,
