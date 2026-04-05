@@ -18,6 +18,7 @@ export const fontSizes = {
     xl: 32,
   },
   body: {
+    XS: 10,
     sm: 12,
     md: 14,
     lg: 16,

@@ -109,45 +109,6 @@ const styles = StyleSheet.create({
   ingredientListContainer: {
     gap: 16,
   },
-  centerContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: theme.colors.white,
-  },
-  errorText: {
-    color: theme.colors.accent,
-    fontSize: 16,
-  },
-  tabsContainer: {
-    flex: 1,
-    marginTop: 16,
-    backgroundColor: theme.colors.white,
-  },
-  tabContainer: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: theme.colors.white,
-  },
-  listItem: {
-    fontSize: 16,
-    marginBottom: 12,
-    lineHeight: 24,
-  },
-  tabLabel: {
-    fontSize: 14,
-    textTransform: "none",
-    fontWeight: "600",
-  },
-  tabBar: {
-    backgroundColor: theme.colors.white,
-    elevation: 0,
-    shadowColor: "transparent",
-  },
-  tabIndicator: {
-    backgroundColor: theme.colors.black,
-    height: 2,
-  },
 });
 
 export default styles;

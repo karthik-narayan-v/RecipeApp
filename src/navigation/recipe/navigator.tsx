@@ -44,9 +44,9 @@ export default function RecipeNavigator() {
         };
       }}
     >
+      <Stack.Screen name="RecipeHome" component={RecipeHome} />
       <Stack.Screen name="RecipeList" component={RecipeList} />
       <Stack.Screen name="RecipeDetail" component={RecipeDetail} />
-      <Stack.Screen name="RecipeHome" component={RecipeHome} />
 
       <Stack.Screen name="RecipeSearch" component={RecipeSearch} />
 

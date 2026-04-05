@@ -9,13 +9,8 @@ interface ChipProps {
 }
 
 const Chip = ({ label, backgroundColor, textColor }: ChipProps) => {
-  const containerStyle: ViewStyle = {
-    ...styles.container,
-    backgroundColor,
-  };
-
   return (
-    <View style={containerStyle}>
+    <View style={[styles.container, { backgroundColor }]}>
       <AppText
         variant="label"
         weight="semiBold"

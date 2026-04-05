@@ -1,15 +1,6 @@
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  ActivityIndicator,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, ScrollView, Image, TouchableOpacity } from "react-native";
 
 import { RecipeStackParamList } from "../../../../navigation/recipe/navigator";
 import { fetchRecipeById } from "../../../../api/api";
@@ -49,22 +40,6 @@ const RecipeDetail = () => {
 
     loadRecipe();
   }, [id]);
-
-  if (loading) {
-    return (
-      <View style={styles.centerContainer}>
-        <ActivityIndicator size="large" color={theme.colors.tertiary} />
-      </View>
-    );
-  }
-
-  if (error) {
-    return (
-      <View style={styles.centerContainer}>
-        <Text style={styles.errorText}>{error}</Text>
-      </View>
-    );
-  }
 
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}>
