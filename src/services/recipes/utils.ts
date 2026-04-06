@@ -4,8 +4,14 @@ export const buildSortQuery = (params?: SortParams) => {
   if (!params) return "";
 
   const query = new URLSearchParams();
-  query.append("sortBy", params.sortBy);
-  query.append("order", params.order);
+
+  if (params.sortBy) {
+    query.append("sortBy", params.sortBy);
+  }
+
+  if (params.order) {
+    query.append("order", params.order);
+  }
 
   return query.toString();
 };
@@ -14,8 +20,14 @@ export const buildPaginationQuery = (params?: PaginationParams) => {
   if (!params) return "";
 
   const query = new URLSearchParams();
-  query.append("limit", String(params.limit));
-  query.append("skip", String(params.skip));
+
+  if (params.limit !== undefined) {
+    query.append("limit", String(params.limit));
+  }
+
+  if (params.skip !== undefined) {
+    query.append("skip", String(params.skip));
+  }
 
   if (params.select?.length) {
     query.append("select", params.select.join(","));

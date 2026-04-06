@@ -20,10 +20,12 @@ export type Recipe = {
 
 interface RecipeState {
   recipes: Recipe[];
+  trendingRecipes: Recipe[];
 }
 
 const initialState: RecipeState = {
   recipes: [],
+  trendingRecipes: [],
 };
 
 const recipeSlice = createSlice({
@@ -33,6 +35,9 @@ const recipeSlice = createSlice({
     setRecipes(state, action: PayloadAction<Recipe[]>) {
       state.recipes = action.payload;
     },
+    setTrendingRecipes(state, action: PayloadAction<Recipe[]>) {
+      state.trendingRecipes = action.payload;
+    },
     toggleLike(state, action: PayloadAction<number>) {
       const recipe = state.recipes.find((r) => r.id === action.payload);
       if (recipe) recipe.isLiked = !recipe.isLiked;
@@ -40,5 +45,5 @@ const recipeSlice = createSlice({
   },
 });
 
-export const { setRecipes, toggleLike } = recipeSlice.actions;
+export const { setRecipes, setTrendingRecipes, toggleLike } = recipeSlice.actions;
 export default recipeSlice.reducer;

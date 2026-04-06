@@ -37,3 +37,13 @@ export const fetchRecipesByMeal = async (meal: string): Promise<Recipe[]> => {
   const response = await recipeClient.get(RECIPE_ENDPOINTS.BY_MEAL(meal));
   return response.data.recipes;
 };
+
+export const fetchTrendingRecipes = async (): Promise<Recipe[]> => {
+  const response = await recipeClient.get(
+    RECIPE_ENDPOINTS.RECIPES({
+      sort: { sortBy: "rating", order: "desc" },
+      pagination: { limit: 3 },
+    })
+  );
+  return response.data.recipes;
+};
