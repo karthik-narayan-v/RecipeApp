@@ -1,5 +1,4 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import RecipeList from "../../features/recipes/screens/RecipeList";
 import RecipeDetail from "../../features/recipes/screens/RecipeDetail";
 import AppHeader from "../../components/AppHeader";
 import RecipeHome from "../../features/recipes/screens/RecipeHome";
@@ -45,7 +44,6 @@ export default function RecipeNavigator() {
       }}
     >
       <Stack.Screen name="RecipeHome" component={RecipeHome} />
-      <Stack.Screen name="RecipeList" component={RecipeList} />
       <Stack.Screen name="RecipeDetail" component={RecipeDetail} />
 
       <Stack.Screen name="RecipeSearch" component={RecipeSearch} />

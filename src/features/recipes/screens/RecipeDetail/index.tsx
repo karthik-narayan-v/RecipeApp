@@ -1,13 +1,19 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { View, ScrollView, Image, TouchableOpacity } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 import { RecipeStackParamList } from "../../../../navigation/recipe/navigator";
 import { fetchRecipeById } from "../../../../api/api";
 import Chip from "../../components/Chip";
 import AppText from "../../../../components/AppText";
 import AppIcon from "../../../../components/AppIcon";
-import { Recipe } from "../../../../store/recipeSlice";
+import {
+  Recipe,
+  saveRecipe,
+  unsaveRecipe,
+} from "../../../../store/recipeSlice";
+import { RootState } from "../../../../store";
 import styles from "./styles";
 import { theme } from "../../../../theme";
 import StatCard from "../../components/StatCard";
@@ -19,11 +25,19 @@ type RecipeDetailRouteProp = RouteProp<RecipeStackParamList, "RecipeDetail">;
 const RecipeDetail = () => {
   const route = useRoute<RecipeDetailRouteProp>();
   const { id } = route.params;
+  const dispatch = useDispatch();
+  const savedRecipes = useSelector(
+    (state: RootState) => state.recipe.savedRecipes,
+  );
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isLiked, setIsLiked] = useState(false);
   const insets = useSafeAreaInsets();
+
+  const isLiked = useMemo(
+    () => savedRecipes.some((savedRecipe) => savedRecipe.id === id),
+    [savedRecipes, id],
+  );
 
   useEffect(() => {
     const loadRecipe = async () => {
@@ -88,7 +102,16 @@ const RecipeDetail = () => {
                 styles.actionButton,
                 isLiked && styles.actionButtonActive,
               ]}
-              onPress={() => setIsLiked(!isLiked)}
+              onPress={() => {
+                if (!recipe) {
+                  return;
+                }
+                if (isLiked) {
+                  dispatch(unsaveRecipe(recipe.id));
+                } else {
+                  dispatch(saveRecipe(recipe));
+                }
+              }}
             >
               <AppIcon
                 name="Heart"

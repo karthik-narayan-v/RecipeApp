@@ -25,7 +25,7 @@ const AppText: React.FC<AppTextProps> = ({
         fontFamily,
         color,
         letterSpacing,
-        lineHeight: fontSize,
+        lineHeight: Math.round(fontSize * 1.2),
       }}
     >
       {children}

@@ -7,9 +7,9 @@ import AppIcon from "../../../../components/AppIcon";
 type TrendingRecipeCardProps = {
   image: string;
   rating: number;
-  reviewCount: string;
+  reviewCount: number;
   title: string;
-  duration: string;
+  duration: number;
   calories: number;
   onPress?: () => void;
 };

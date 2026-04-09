@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { ScrollView, TouchableOpacity, View, Animated } from "react-native";
+import React, { useEffect, useMemo, useState } from "react";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "./styles";
 import AppText from "../../../../components/AppText";
@@ -8,7 +8,11 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../../../../api/api";
 import { RootState } from "../../../../store";
-import { setRecipes, setTrendingRecipes } from "../../../../store/recipeSlice";
+import {
+  Recipe,
+  setRecipes,
+  setTrendingRecipes,
+} from "../../../../store/recipeSlice";
 import { RecipeStackParamList } from "../../../../navigation/recipe/navigator";
 import { StackNavigationProp } from "@react-navigation/stack";
 import FeaturedRecipeCard from "../../components/FeatureRecipeCard";
@@ -38,19 +42,24 @@ const RecipeHome: React.FC = () => {
   );
   const navigation = useNavigation<RecipeListNavigationProp>();
 
-  const indexRef = useRef(0);
-  const [currentText, setCurrentText] = useState(PLACEHOLDERS[0]);
-  const [nextText, setNextText] = useState(PLACEHOLDERS[1]);
+  // const [index, setIndex] = useState(0);
+  const [featuredRecipes, setFeaturedRecipes] = useState<Recipe[]>([]);
 
-  const currentAnim = useRef(new Animated.Value(0)).current;
-  const nextAnim = useRef(new Animated.Value(20)).current;
-  const currentOpacity = useRef(new Animated.Value(1)).current;
-  const nextOpacity = useRef(new Animated.Value(0)).current;
+  // const slideAnim = useRef(new Animated.Value(0)).current;
 
-  const featuredRecipes = useMemo(() => {
-    if (recipes.length === 0) return [];
-    const shuffled = [...recipes].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 2);
+  // Calculate current and next text based on displayed index
+  // const currentText = PLACEHOLDERS[displayedIndexRef.current];
+  // const nextText =
+  //   PLACEHOLDERS[(displayedIndexRef.current + 1) % PLACEHOLDERS.length];
+
+  // Static text for now
+  const staticText = PLACEHOLDERS[0];
+
+  useEffect(() => {
+    if (recipes.length > 0) {
+      const shuffled = [...recipes].sort(() => Math.random() - 0.5);
+      setFeaturedRecipes(shuffled.slice(0, 2));
+    }
   }, [recipes]);
 
   useEffect(() => {
@@ -69,133 +78,71 @@ const RecipeHome: React.FC = () => {
     loadRecipes();
   }, [dispatch]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const nextIndex = (indexRef.current + 1) % PLACEHOLDERS.length;
-      const afterNextIndex = (nextIndex + 1) % PLACEHOLDERS.length;
-      const nextPlaceholder = PLACEHOLDERS[nextIndex];
-      const afterNextPlaceholder = PLACEHOLDERS[afterNextIndex];
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // Start slide animation
+  //     slideAnim.setValue(0);
+  //     Animated.timing(slideAnim, {
+  //       toValue: 1,
+  //       duration: 400,
+  //       useNativeDriver: true,
+  //     }).start(() => {
+  //       // Update displayed index after animation completes
+  //       displayedIndexRef.current =
+  //         (displayedIndexRef.current + 1) % PLACEHOLDERS.length;
+  //       // Force re-render to update text
+  //       setIndex(displayedIndexRef.current);
+  //     });
+  //   }, 2500);
 
-      setNextText(nextPlaceholder);
-      currentAnim.setValue(0);
-      nextAnim.setValue(20);
-      currentOpacity.setValue(1);
-      nextOpacity.setValue(0);
+  //   return () => {
+  //     clearInterval(interval);
+  //     slideAnim.stopAnimation();
+  //   };
+  // }, []);
 
-      requestAnimationFrame(() => {
-        Animated.parallel([
-          Animated.timing(currentAnim, {
-            toValue: -20,
-            duration: 400,
-            useNativeDriver: true,
-          }),
-          Animated.timing(currentOpacity, {
-            toValue: 0,
-            duration: 400,
-            useNativeDriver: true,
-          }),
-          Animated.timing(nextAnim, {
-            toValue: 0,
-            duration: 400,
-            useNativeDriver: true,
-          }),
-          Animated.timing(nextOpacity, {
-            toValue: 1,
-            duration: 400,
-            useNativeDriver: true,
-          }),
-        ]).start(() => {
-          indexRef.current = nextIndex;
-          setCurrentText(nextPlaceholder);
-          setNextText(afterNextPlaceholder);
+  const handleRecipeDetailNavigation = (id: number) => {
+    navigation.navigate("RecipeDetail", { id });
+  };
 
-          currentAnim.setValue(0);
-          currentOpacity.setValue(1);
-          nextAnim.setValue(20);
-          nextOpacity.setValue(0);
-        });
-      });
-    }, 2500);
+  const containerStyle = useMemo(
+    () => ({
+      ...styles.container,
+      paddingBottom: insets.bottom + 24,
+    }),
+    [insets.bottom],
+  );
 
-    return () => clearInterval(interval);
-  }, []);
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.searchBoxButton}
-          onPress={() => {}}
-          activeOpacity={0.7}
-        >
-          <AppIcon name="Search" size={20} color={theme.colors.darkBrown} />
-          <Animated.View style={styles.searchTextContainer}>
-            <Animated.View
-              style={{
-                position: "absolute",
-                transform: [{ translateY: currentAnim }],
-                opacity: currentOpacity,
-              }}
-            >
-              <AppText variant="body" size="md" color={theme.colors.darkBrown}>
-                {currentText}
-              </AppText>
-            </Animated.View>
-
-            <Animated.View
-              style={{
-                position: "absolute",
-                transform: [{ translateY: nextAnim }],
-                opacity: nextOpacity,
-              }}
-            >
-              <AppText variant="body" size="md" color={theme.colors.darkBrown}>
-                {nextText}
-              </AppText>
-            </Animated.View>
-          </Animated.View>
-        </TouchableOpacity>
-
-        <View style={styles.featuredContainer}>
-          <View style={styles.featuredTitleContainer}>
-            <AppText
-              variant="body"
-              weight="bold"
-              size="xs"
-              color={theme.colors.primary}
-              letterSpacing={1}
-            >
-              EDITOR'S PICK
-            </AppText>
-            <AppText
-              variant="headline"
-              weight="extraBold"
-              size="xl"
-              color={theme.colors.black}
-              letterSpacing={1}
-            >
-              Featured
-            </AppText>
-          </View>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.featuredItemsContainer}
-          >
-            {featuredRecipes?.map((recipe) => (
-              <FeaturedRecipeCard
-                key={recipe.id}
-                title={recipe.name}
-                image={recipe.image}
-                category={recipe.cuisine}
-                duration={String(recipe.cookTimeMinutes)}
-                onPress={() => {
-                  navigation.navigate("RecipeDetail", { id: recipe.id });
-                }}
-              />
-            ))}
-          </ScrollView>
+    <ScrollView
+      bounces={false}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={containerStyle}
+    >
+      <TouchableOpacity
+        style={styles.searchBoxButton}
+        onPress={() => navigation.navigate("RecipeSearch")}
+        activeOpacity={0.7}
+      >
+        <AppIcon name="Search" size={20} color={theme.colors.darkBrown} />
+        <View style={styles.searchTextContainer}>
+          <AppText variant="body" size="md" color={theme.colors.darkBrown}>
+            {staticText}
+          </AppText>
         </View>
-        <View style={styles.trendingContainer}>
+      </TouchableOpacity>
+
+      <View style={styles.featuredContainer}>
+        <View style={styles.featuredTitleContainer}>
+          <AppText
+            variant="body"
+            weight="bold"
+            size="xs"
+            color={theme.colors.primary}
+            letterSpacing={1}
+          >
+            EDITOR'S PICK
+          </AppText>
           <AppText
             variant="headline"
             weight="extraBold"
@@ -203,27 +150,53 @@ const RecipeHome: React.FC = () => {
             color={theme.colors.black}
             letterSpacing={1}
           >
-            Trending Now
+            Featured
           </AppText>
-          <ScrollView
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.featuredItemsContainer}
-          >
-            {trendingRecipes?.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                image={recipe.image}
-                rating={Number(recipe.rating)}
-                reviewCount={String(recipe.reviewCount)}
-                title={recipe.name}
-                duration={String(recipe.cookTimeMinutes)}
-                calories={recipe.caloriesPerServing}
-                onPress={() => {
-                  navigation.navigate("RecipeDetail", { id: recipe.id });
-                }}
-              />
-            ))}
-          </ScrollView>
+        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.featuredItemsContainer}
+        >
+          {featuredRecipes.map((recipe) => (
+            <FeaturedRecipeCard
+              key={recipe.id}
+              title={recipe.name}
+              image={recipe.image}
+              category={recipe.cuisine}
+              duration={recipe.cookTimeMinutes}
+              onPress={() => {
+                handleRecipeDetailNavigation(recipe.id);
+              }}
+            />
+          ))}
+        </ScrollView>
+      </View>
+      <View style={styles.trendingContainer}>
+        <AppText
+          variant="headline"
+          weight="extraBold"
+          size="xl"
+          color={theme.colors.black}
+          letterSpacing={1}
+        >
+          Trending Now
+        </AppText>
+        <View style={styles.trendingListContainer}>
+          {trendingRecipes.map((recipe) => (
+            <RecipeCard
+              key={recipe.id}
+              image={recipe.image}
+              rating={recipe.rating}
+              reviewCount={recipe.reviewCount}
+              title={recipe.name}
+              duration={recipe.cookTimeMinutes}
+              calories={recipe.caloriesPerServing}
+              onPress={() => {
+                handleRecipeDetailNavigation(recipe.id);
+              }}
+            />
+          ))}
         </View>
       </View>
     </ScrollView>

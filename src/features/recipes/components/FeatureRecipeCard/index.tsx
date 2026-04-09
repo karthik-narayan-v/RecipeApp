@@ -8,7 +8,7 @@ import { LinearGradient } from "expo-linear-gradient";
 type FeaturedRecipeCardProps = {
   image: string;
   category: string;
-  duration: string;
+  duration: number;
   title: string;
   onPress?: () => void;
 };

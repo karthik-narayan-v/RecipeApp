@@ -3,17 +3,19 @@ import { theme } from "../../../../theme";
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: theme.colors.neutral,
   },
-  searchBoxButton: {
+  content: {
+    paddingHorizontal: 24,
+    paddingTop: 24,
+  },
+  searchBoxContainer: {
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
     backgroundColor: theme.colors.surface,
     borderRadius: 9999,
-    marginTop: 24,
-    marginHorizontal: 24,
     paddingVertical: 16,
     paddingHorizontal: 20,
     shadowColor: theme.colors.black,
@@ -21,32 +23,29 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.04,
     shadowRadius: 20,
     elevation: 2,
-    overflow: "hidden",
+    marginBottom: 32,
   },
-  searchTextContainer: {
+  searchInput: {
     flex: 1,
-    height: 22,
-    overflow: "hidden",
+    fontSize: 16,
+    color: theme.colors.darkBrown,
+    fontFamily: "DMSans-Regular",
+    paddingVertical: 0,
+  },
+  centerContainer: {
+    alignItems: "center",
     justifyContent: "center",
+    marginTop: 80,
+    gap: 12,
   },
-  featuredContainer: {
-    marginTop: 40,
-    paddingHorizontal: 24,
+  loader: {
+    marginBottom: 16,
   },
-  featuredTitleContainer: {
-    marginBottom: 24,
-  },
-  featuredItemsContainer: {
+  resultsContainer: {
     gap: 24,
   },
-  trendingListContainer: {
-    flexDirection: "column", 
-    gap: 24,
-  },
-  trendingContainer: {
-    marginTop: 40,
-    paddingHorizontal: 24,
-    gap: 24,
+  resultsGrid: {
+    gap: 16,
   },
 });
 
