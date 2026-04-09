@@ -1,32 +1,34 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ScrollView,
   TouchableOpacity,
   View,
   TextInput,
   ActivityIndicator,
-} from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AppText from "../../../../components/AppText";
-import { theme } from "../../../../theme";
-import AppIcon from "../../../../components/AppIcon";
-import RecipeCard from "../../components/RecipeCard";
-import { searchRecipes } from "../../../../services/recipes/recipeApi";
-import { Recipe } from "../../../../store/recipeSlice";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RecipeStackParamList } from "../../../../navigation/recipe/navigator";
-import styles from "./styles";
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import AppIcon from '../../../../components/AppIcon';
+import AppText from '../../../../components/AppText';
+import { RecipeStackParamList } from '../../../../navigation/recipe/navigator';
+import { searchRecipes } from '../../../../services/recipes/recipeApi';
+import { Recipe } from '../../../../store/recipeSlice';
+import { theme } from '../../../../theme';
+import RecipeCard from '../../components/RecipeCard';
+
+import styles from './styles';
 
 type RecipeSearchNavigationProp = StackNavigationProp<
   RecipeStackParamList,
-  "RecipeSearch"
+  'RecipeSearch'
 >;
 
 const RecipeSearch: React.FC = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<RecipeSearchNavigationProp>();
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
   const [results, setResults] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
@@ -49,7 +51,7 @@ const RecipeSearch: React.FC = () => {
       const data = await searchRecipes(query);
       setResults(data);
     } catch (err) {
-      setError("Failed to search recipes. Please try again.");
+      setError(err instanceof Error ? err.message : 'Failed to search recipes');
       setResults([]);
     } finally {
       setLoading(false);
@@ -81,7 +83,7 @@ const RecipeSearch: React.FC = () => {
   }, [searchText]);
 
   const handleClearSearch = () => {
-    setSearchText("");
+    setSearchText('');
     setResults([]);
     setHasSearched(false);
     setError(null);
@@ -177,7 +179,7 @@ const RecipeSearch: React.FC = () => {
               Search Results ({results.length})
             </AppText>
             <View style={styles.resultsGrid}>
-              {results.map((recipe) => (
+              {results.map(recipe => (
                 <RecipeCard
                   key={recipe.id}
                   image={recipe.image}
@@ -187,7 +189,7 @@ const RecipeSearch: React.FC = () => {
                   duration={recipe.cookTimeMinutes}
                   calories={recipe.caloriesPerServing}
                   onPress={() => {
-                    navigation.navigate("RecipeDetail", { id: recipe.id });
+                    navigation.navigate('RecipeDetail', { id: recipe.id });
                   }}
                 />
               ))}

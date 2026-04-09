@@ -1,9 +1,10 @@
-import { createStackNavigator } from "@react-navigation/stack";
-import RecipeDetail from "../../features/recipes/screens/RecipeDetail";
-import AppHeader from "../../components/AppHeader";
-import RecipeHome from "../../features/recipes/screens/RecipeHome";
-import RecipeSearch from "../../features/recipes/screens/RecipeSearch";
-import RecipeSaved from "../../features/recipes/screens/RecipeSaved";
+import { createStackNavigator } from '@react-navigation/stack';
+
+import AppHeader from '../../components/AppHeader';
+import RecipeDetail from '../../features/recipes/screens/RecipeDetail';
+import RecipeHome from '../../features/recipes/screens/RecipeHome';
+import RecipeSaved from '../../features/recipes/screens/RecipeSaved';
+import RecipeSearch from '../../features/recipes/screens/RecipeSearch';
 
 export type RecipeStackParamList = {
   RecipeList: undefined;
@@ -35,7 +36,7 @@ export default function RecipeNavigator() {
               onBackPress={config.back ? () => navigation.goBack() : undefined}
               onSavedPress={
                 config.saved
-                  ? () => navigation.navigate("RecipeSaved")
+                  ? () => navigation.navigate('RecipeSaved')
                   : undefined
               }
             />

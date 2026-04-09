@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity } from "react-native";
-import AppText from "../../../../components/AppText";
-import { theme } from "../../../../theme";
-import styles from "./styles";
+import React, { useState } from 'react';
+import { View, TouchableOpacity } from 'react-native';
+
+import AppText from '../../../../components/AppText';
+import { theme } from '../../../../theme';
+
+import styles from './styles';
 
 type InstructionStepProps = {
   index: number;
@@ -15,7 +17,7 @@ const InstructionStep = ({ index, instruction }: InstructionStepProps) => {
   return (
     <TouchableOpacity
       style={styles.stepRow}
-      onPress={() => setIsActive((prev) => !prev)}
+      onPress={() => setIsActive(prev => !prev)}
       activeOpacity={1}
     >
       <AppText
@@ -24,7 +26,7 @@ const InstructionStep = ({ index, instruction }: InstructionStepProps) => {
         size="xl"
         color={isActive ? theme.colors.accent : theme.colors.surface}
       >
-        {String(index + 1).padStart(2, "0")}
+        {String(index + 1).padStart(2, '0')}
       </AppText>
       <View style={styles.instructionWrapper}>
         <AppText

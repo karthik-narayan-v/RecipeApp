@@ -1,15 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import { View, ImageBackground, Animated } from "react-native";
-import styles from "./styles";
-import AnimatedProgress from "../../components/AnimatedProgress";
+import React, { useEffect, useRef } from 'react';
+import { View, ImageBackground, Animated } from 'react-native';
+
+import AnimatedProgress from '../../components/AnimatedProgress';
+
+import styles from './styles';
 
 type SplashScreenProps = {
   onAnimationFinish: () => void;
 };
 
-const SplashScreen: React.FC<SplashScreenProps> = ({
-  onAnimationFinish,
-}) => {
+const SplashScreen: React.FC<SplashScreenProps> = ({ onAnimationFinish }) => {
   const progress = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -17,16 +17,14 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
       toValue: 1,
       duration: 2000,
       useNativeDriver: false,
-    }).start(
-      () => {
+    }).start(() => {
       onAnimationFinish();
-    }
-    );
+    });
   }, [progress, onAnimationFinish]);
 
   return (
     <ImageBackground
-      source={require("../../../../assets/images/splash_bg.png")}
+      source={require('../../../../assets/images/splash_bg.png')}
       style={styles.container}
       resizeMode="cover"
     >

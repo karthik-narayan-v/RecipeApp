@@ -1,8 +1,10 @@
-import { TouchableOpacity, Image, View } from "react-native";
-import styles from "./styles";
-import { theme } from "../../../../theme";
-import AppText from "../../../../components/AppText";
-import AppIcon from "../../../../components/AppIcon";
+import { TouchableOpacity, Image, View } from 'react-native';
+
+import AppIcon from '../../../../components/AppIcon';
+import AppText from '../../../../components/AppText';
+import { theme } from '../../../../theme';
+
+import styles from './styles';
 
 type TrendingRecipeCardProps = {
   image: string;

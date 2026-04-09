@@ -1,31 +1,31 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingHorizontal: 24,
     paddingVertical: 16,
-    alignItems: "center",
+    alignItems: 'center',
   },
   left: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "flex-start",
+    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
 
   center: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   right: {
     flex: 1,
-    alignItems: "flex-end",
+    alignItems: 'flex-end',
   },
 
   logoContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: '600',
   },
 });
 

@@ -1,10 +1,12 @@
-import React from "react";
-import { TouchableOpacity, View, Image } from "react-native";
-import styles from "./styles";
-import { SafeAreaView } from "react-native-safe-area-context";
-import AppText from "../AppText";
-import AppIcon from "../AppIcon";
-import { theme } from "../../theme";
+import React from 'react';
+import { TouchableOpacity, View, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { theme } from '../../theme';
+import AppIcon from '../AppIcon';
+import AppText from '../AppText';
+
+import styles from './styles';
 
 type AppHeaderProps = {
   onBackPress?: () => void;
@@ -13,17 +15,21 @@ type AppHeaderProps = {
 
 const AppHeader: React.FC<AppHeaderProps> = ({ onBackPress, onSavedPress }) => {
   return (
-    <SafeAreaView edges={["top"]}>
+    <SafeAreaView edges={['top']}>
       <View style={styles.container}>
         <View style={styles.left}>
           {onBackPress ? (
             <TouchableOpacity onPress={onBackPress}>
-              <AppIcon name="ChevronLeft" size={24} color={theme.colors.black}/>
+              <AppIcon
+                name="ChevronLeft"
+                size={24}
+                color={theme.colors.black}
+              />
             </TouchableOpacity>
           ) : (
             <View style={styles.logoContainer}>
               <Image
-                source={require("../../assets/images/logo.png")}
+                source={require('../../assets/images/logo.png')}
                 style={styles.logo}
                 resizeMode="contain"
               />
@@ -44,7 +50,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onBackPress, onSavedPress }) => {
           <View style={styles.center}>
             <View style={styles.logoContainer}>
               <Image
-                source={require("../../assets/images/logo.png")}
+                source={require('../../assets/images/logo.png')}
                 style={styles.logo}
                 resizeMode="cover"
               />
@@ -63,7 +69,12 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onBackPress, onSavedPress }) => {
 
         <View style={styles.right}>
           <TouchableOpacity onPress={onSavedPress}>
-            <AppIcon name="Bookmark" color={theme.colors.black} fill size={24} />
+            <AppIcon
+              name="Bookmark"
+              color={theme.colors.black}
+              fill
+              size={24}
+            />
           </TouchableOpacity>
         </View>
       </View>

@@ -1,7 +1,7 @@
-import React from "react";
-import { View } from "react-native";
-import styles from "./styles";
-import { theme } from "../../theme";
+import React from 'react';
+import { View } from 'react-native';
+
+import styles from './styles';
 
 type ProgressLoaderProps = {
   progress: number;
@@ -20,8 +20,6 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = ({
         styles.container,
         {
           width,
-          backgroundColor: theme.colors.neutral,
-          borderRadius: 9999,
         },
       ]}
     >
@@ -30,8 +28,6 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = ({
           styles.progress,
           {
             width: progressWidth,
-            backgroundColor: theme.colors.primary,
-            borderRadius: 9999,
           },
         ]}
       />

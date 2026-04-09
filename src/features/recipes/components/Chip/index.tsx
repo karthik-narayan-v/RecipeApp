@@ -1,6 +1,8 @@
-import { View, ViewStyle } from "react-native";
-import AppText from "../../../../components/AppText";
-import styles from "./styles";
+import { View } from 'react-native';
+
+import AppText from '../../../../components/AppText';
+
+import styles from './styles';
 
 interface ChipProps {
   label: string;

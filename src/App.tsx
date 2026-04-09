@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import * as ExpoSplash from "expo-splash-screen";
-import { Provider } from "react-redux";
-import SplashScreen from "./features/splash/screens/SplashScreen";
-import { FontProvider } from "./providers/FontProvider";
-import { store } from "./store";
-import { NavigationContainer } from "@react-navigation/native";
-import RootNavigator from "./navigation/RootNavigator";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { NavigationContainer } from '@react-navigation/native';
+import * as ExpoSplash from 'expo-splash-screen';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+
+import SplashScreen from './features/splash/screens/SplashScreen';
+import RootNavigator from './navigation/RootNavigator';
+import { FontProvider } from './providers/FontProvider';
+import { store } from './store';
 
 ExpoSplash.preventAutoHideAsync();
 
@@ -17,7 +18,7 @@ export default function App() {
   useEffect(() => {
     const prepare = async () => {
       try {
-        await new Promise((res) => setTimeout(res, 1000));
+        await new Promise(res => setTimeout(res, 1000));
       } catch (e) {
         console.warn(e);
       } finally {

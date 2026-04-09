@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { Recipe } from "../store/recipeSlice";
+import { Recipe } from '../store/recipeSlice';
 
 export const fetchRecipes = async () => {
-  const response = await axios.get("https://dummyjson.com/recipes");
+  const response = await axios.get('https://dummyjson.com/recipes');
   return response.data.recipes;
 };
 

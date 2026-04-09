@@ -1,36 +1,38 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import styles from "./styles";
-import AppText from "../../../../components/AppText";
-import { theme } from "../../../../theme";
-import { useNavigation } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchRecipes } from "../../../../api/api";
-import { RootState } from "../../../../store";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchRecipes } from '../../../../api/api';
+import AppIcon from '../../../../components/AppIcon';
+import AppText from '../../../../components/AppText';
+import { RecipeStackParamList } from '../../../../navigation/recipe/navigator';
+import { fetchTrendingRecipes } from '../../../../services/recipes/recipeApi';
+import { RootState } from '../../../../store';
 import {
   Recipe,
   setRecipes,
   setTrendingRecipes,
-} from "../../../../store/recipeSlice";
-import { RecipeStackParamList } from "../../../../navigation/recipe/navigator";
-import { StackNavigationProp } from "@react-navigation/stack";
-import FeaturedRecipeCard from "../../components/FeatureRecipeCard";
-import AppIcon from "../../../../components/AppIcon";
-import RecipeCard from "../../components/RecipeCard";
-import { fetchTrendingRecipes } from "../../../../services/recipes/recipeApi";
+} from '../../../../store/recipeSlice';
+import { theme } from '../../../../theme';
+import FeaturedRecipeCard from '../../components/FeatureRecipeCard';
+import RecipeCard from '../../components/RecipeCard';
+
+import styles from './styles';
 
 const PLACEHOLDERS = [
-  "What do you want to cook?",
-  "Find something delicious...",
-  "Search your next meal",
-  "Discover recipes",
-  "What are you craving?",
+  'What do you want to cook?',
+  'Find something delicious...',
+  'Search your next meal',
+  'Discover recipes',
+  'What are you craving?',
 ];
 
 type RecipeListNavigationProp = StackNavigationProp<
   RecipeStackParamList,
-  "RecipeHome"
+  'RecipeHome'
 >;
 
 const RecipeHome: React.FC = () => {
@@ -38,7 +40,7 @@ const RecipeHome: React.FC = () => {
   const dispatch = useDispatch();
   const recipes = useSelector((state: RootState) => state.recipe.recipes);
   const trendingRecipes = useSelector(
-    (state: RootState) => state.recipe.trendingRecipes,
+    (state: RootState) => state.recipe.trendingRecipes
   );
   const navigation = useNavigation<RecipeListNavigationProp>();
 
@@ -72,7 +74,7 @@ const RecipeHome: React.FC = () => {
         dispatch(setRecipes(data));
         dispatch(setTrendingRecipes(trending));
       } catch (error) {
-        console.log("Failed to load recipes:", error);
+        console.log('Failed to load recipes:', error);
       }
     };
     loadRecipes();
@@ -102,7 +104,7 @@ const RecipeHome: React.FC = () => {
   // }, []);
 
   const handleRecipeDetailNavigation = (id: number) => {
-    navigation.navigate("RecipeDetail", { id });
+    navigation.navigate('RecipeDetail', { id });
   };
 
   const containerStyle = useMemo(
@@ -110,7 +112,7 @@ const RecipeHome: React.FC = () => {
       ...styles.container,
       paddingBottom: insets.bottom + 24,
     }),
-    [insets.bottom],
+    [insets.bottom]
   );
 
   return (
@@ -121,7 +123,7 @@ const RecipeHome: React.FC = () => {
     >
       <TouchableOpacity
         style={styles.searchBoxButton}
-        onPress={() => navigation.navigate("RecipeSearch")}
+        onPress={() => navigation.navigate('RecipeSearch')}
         activeOpacity={0.7}
       >
         <AppIcon name="Search" size={20} color={theme.colors.darkBrown} />
@@ -141,7 +143,7 @@ const RecipeHome: React.FC = () => {
             color={theme.colors.primary}
             letterSpacing={1}
           >
-            EDITOR'S PICK
+            EDITOR&apos;S PICK
           </AppText>
           <AppText
             variant="headline"
@@ -158,7 +160,7 @@ const RecipeHome: React.FC = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.featuredItemsContainer}
         >
-          {featuredRecipes.map((recipe) => (
+          {featuredRecipes.map(recipe => (
             <FeaturedRecipeCard
               key={recipe.id}
               title={recipe.name}
@@ -183,7 +185,7 @@ const RecipeHome: React.FC = () => {
           Trending Now
         </AppText>
         <View style={styles.trendingListContainer}>
-          {trendingRecipes.map((recipe) => (
+          {trendingRecipes.map(recipe => (
             <RecipeCard
               key={recipe.id}
               image={recipe.image}

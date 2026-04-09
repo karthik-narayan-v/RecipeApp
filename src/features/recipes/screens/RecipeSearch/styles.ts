@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
-import { theme } from "../../../../theme";
+import { StyleSheet } from 'react-native';
+
+import { theme } from '../../../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,8 +12,8 @@ const styles = StyleSheet.create({
     paddingTop: 24,
   },
   searchBoxContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 12,
     backgroundColor: theme.colors.surface,
     borderRadius: 9999,
@@ -29,12 +30,12 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: theme.colors.darkBrown,
-    fontFamily: "DMSans-Regular",
+    fontFamily: 'DMSans-Regular',
     paddingVertical: 0,
   },
   centerContainer: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 80,
     gap: 12,
   },

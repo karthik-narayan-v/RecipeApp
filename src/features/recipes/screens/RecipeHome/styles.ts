@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
-import { theme } from "../../../../theme";
+import { StyleSheet } from 'react-native';
+
+import { theme } from '../../../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -7,8 +8,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.neutral,
   },
   searchBoxButton: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 12,
     backgroundColor: theme.colors.surface,
     borderRadius: 9999,
@@ -21,13 +22,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.04,
     shadowRadius: 20,
     elevation: 2,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   searchTextContainer: {
     flex: 1,
     height: 22,
-    overflow: "hidden",
-    justifyContent: "center",
+    overflow: 'hidden',
+    justifyContent: 'center',
   },
   featuredContainer: {
     marginTop: 40,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     gap: 24,
   },
   trendingListContainer: {
-    flexDirection: "column", 
+    flexDirection: 'column',
     gap: 24,
   },
   trendingContainer: {

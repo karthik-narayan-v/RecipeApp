@@ -1,9 +1,8 @@
-import { StyleSheet } from "react-native";
-import { theme } from "../../../../theme";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   stepRow: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 24,
   },
   instructionWrapper: {

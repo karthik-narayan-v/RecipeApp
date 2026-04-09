@@ -1,9 +1,10 @@
-import { Recipe } from "../../store/recipeSlice";
-import { createClient } from "../clients/createCient";
-import { RECIPE_ENDPOINTS } from "../endpoints/recipeEndpoint";
-import { PaginationParams, SortParams } from "./types";
+import { Recipe } from '../../store/recipeSlice';
+import { createClient } from '../clients/createCient';
+import { RECIPE_ENDPOINTS } from '../endpoints/recipeEndpoint';
 
-export const recipeClient = createClient("https://dummyjson.com");
+import { PaginationParams, SortParams } from './types';
+
+export const recipeClient = createClient('https://dummyjson.com');
 
 export const fetchRecipes = async (options?: {
   sort?: SortParams;
@@ -41,7 +42,7 @@ export const fetchRecipesByMeal = async (meal: string): Promise<Recipe[]> => {
 export const fetchTrendingRecipes = async (): Promise<Recipe[]> => {
   const response = await recipeClient.get(
     RECIPE_ENDPOINTS.RECIPES({
-      sort: { sortBy: "rating", order: "desc" },
+      sort: { sortBy: 'rating', order: 'desc' },
       pagination: { limit: 3 },
     })
   );

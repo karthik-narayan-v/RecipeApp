@@ -1,54 +1,51 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { useEffect, useMemo, useState } from "react";
-import { View, ScrollView, Image, TouchableOpacity } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { useEffect, useMemo, useState } from 'react';
+import { View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { RecipeStackParamList } from "../../../../navigation/recipe/navigator";
-import { fetchRecipeById } from "../../../../api/api";
-import Chip from "../../components/Chip";
-import AppText from "../../../../components/AppText";
-import AppIcon from "../../../../components/AppIcon";
+import { fetchRecipeById } from '../../../../api/api';
+import AppIcon from '../../../../components/AppIcon';
+import AppText from '../../../../components/AppText';
+import { RecipeStackParamList } from '../../../../navigation/recipe/navigator';
+import { RootState } from '../../../../store';
 import {
   Recipe,
   saveRecipe,
   unsaveRecipe,
-} from "../../../../store/recipeSlice";
-import { RootState } from "../../../../store";
-import styles from "./styles";
-import { theme } from "../../../../theme";
-import StatCard from "../../components/StatCard";
-import InstructionStep from "../../components/InstructionStep";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+} from '../../../../store/recipeSlice';
+import { theme } from '../../../../theme';
+import Chip from '../../components/Chip';
+import InstructionStep from '../../components/InstructionStep';
+import StatCard from '../../components/StatCard';
 
-type RecipeDetailRouteProp = RouteProp<RecipeStackParamList, "RecipeDetail">;
+import styles from './styles';
+
+type RecipeDetailRouteProp = RouteProp<RecipeStackParamList, 'RecipeDetail'>;
 
 const RecipeDetail = () => {
   const route = useRoute<RecipeDetailRouteProp>();
   const { id } = route.params;
   const dispatch = useDispatch();
   const savedRecipes = useSelector(
-    (state: RootState) => state.recipe.savedRecipes,
+    (state: RootState) => state.recipe.savedRecipes
   );
   const [recipe, setRecipe] = useState<Recipe | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const insets = useSafeAreaInsets();
 
   const isLiked = useMemo(
-    () => savedRecipes.some((savedRecipe) => savedRecipe.id === id),
-    [savedRecipes, id],
+    () => savedRecipes.some(savedRecipe => savedRecipe.id === id),
+    [savedRecipes, id]
   );
 
   useEffect(() => {
     const loadRecipe = async () => {
       try {
         const data = await fetchRecipeById(id);
-        console.log("Fetched recipe data:", data);
+        console.log('Fetched recipe data:', data);
         setRecipe(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load recipe");
       } finally {
-        setLoading(false);
+        setRecipe(null);
       }
     };
 
@@ -187,14 +184,18 @@ const RecipeDetail = () => {
               INSTRUCTIONS
             </AppText>
             <Chip
-              label={recipe?.difficulty ?? ""}
+              label={recipe?.difficulty ?? ''}
               backgroundColor={theme.colors.lightGreen}
               textColor={theme.colors.darkGreen}
             />
           </View>
           <View style={styles.instructionStepContainer}>
             {recipe?.instructions.map((instruction, index) => (
-              <InstructionStep index={index} instruction={instruction} />
+              <InstructionStep
+                key={index}
+                index={index}
+                instruction={instruction}
+              />
             ))}
           </View>
         </View>

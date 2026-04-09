@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
-import { theme } from "../../../../theme";
+import { StyleSheet } from 'react-native';
+
+import { theme } from '../../../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,13 +12,13 @@ const styles = StyleSheet.create({
     paddingTop: 24,
   },
   emptyContainer: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 100,
     gap: 16,
   },
   emptyText: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 8,
     marginHorizontal: 20,
   },

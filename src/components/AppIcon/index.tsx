@@ -1,6 +1,7 @@
-import React from "react";
-import * as Icons from "lucide-react-native";
-import { theme } from "../../theme";
+import * as Icons from 'lucide-react-native';
+import React from 'react';
+
+import { theme } from '../../theme';
 
 type IconName = keyof typeof Icons;
 
@@ -28,7 +29,7 @@ const AppIcon: React.FC<AppIconProps> = ({
       size={size}
       color={color}
       strokeWidth={strokeWidth}
-      fill={fill ? color : "none"}
+      fill={fill ? color : 'none'}
     />
   );
 };

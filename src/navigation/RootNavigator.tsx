@@ -1,5 +1,6 @@
-import { createStackNavigator } from "@react-navigation/stack";
-import RecipeNavigator from "./recipe/navigator";
+import { createStackNavigator } from '@react-navigation/stack';
+
+import RecipeNavigator from './recipe/navigator';
 
 export type RootStackParamList = {
   Recipes: undefined;

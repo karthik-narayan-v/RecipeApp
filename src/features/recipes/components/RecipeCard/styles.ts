@@ -1,13 +1,14 @@
-import { StyleSheet } from "react-native";
-import { theme } from "../../../../theme";
+import { StyleSheet } from 'react-native';
+
+import { theme } from '../../../../theme';
 
 const styles = StyleSheet.create({
-    card: {
+  card: {
     backgroundColor: theme.colors.surface,
     borderRadius: 24,
     padding: 16,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 16,
     shadowColor: theme.colors.black,
     shadowOffset: { width: 0, height: 2 },
@@ -27,23 +28,23 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   ratingRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 4,
   },
   title: {
     lineHeight: 22,
   },
   metaRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 16,
   },
   metaItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 4,
   },
-})
+});
 
 export default styles;

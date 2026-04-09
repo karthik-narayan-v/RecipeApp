@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type Recipe = {
   id: number;
@@ -31,7 +31,7 @@ const initialState: RecipeState = {
 };
 
 const recipeSlice = createSlice({
-  name: "recipe",
+  name: 'recipe',
   initialState,
   reducers: {
     setRecipes(state, action: PayloadAction<Recipe[]>) {
@@ -41,40 +41,40 @@ const recipeSlice = createSlice({
       state.trendingRecipes = action.payload;
     },
     toggleLike(state, action: PayloadAction<number>) {
-      const recipe = state.recipes.find((r) => r.id === action.payload);
+      const recipe = state.recipes.find(r => r.id === action.payload);
       if (recipe) {
         recipe.isLiked = !recipe.isLiked;
         if (recipe.isLiked) {
-          if (!state.savedRecipes.find((r) => r.id === recipe.id)) {
+          if (!state.savedRecipes.find(r => r.id === recipe.id)) {
             state.savedRecipes.push({ ...recipe });
           }
         } else {
           state.savedRecipes = state.savedRecipes.filter(
-            (r) => r.id !== recipe.id,
+            r => r.id !== recipe.id
           );
         }
       } else {
         state.savedRecipes = state.savedRecipes.filter(
-          (r) => r.id !== action.payload,
+          r => r.id !== action.payload
         );
       }
     },
     saveRecipe(state, action: PayloadAction<Recipe>) {
       const recipe = action.payload;
-      const existing = state.savedRecipes.find((r) => r.id === recipe.id);
+      const existing = state.savedRecipes.find(r => r.id === recipe.id);
       if (!existing) {
         state.savedRecipes.push({ ...recipe, isLiked: true });
       }
-      const storedRecipe = state.recipes.find((r) => r.id === recipe.id);
+      const storedRecipe = state.recipes.find(r => r.id === recipe.id);
       if (storedRecipe) {
         storedRecipe.isLiked = true;
       }
     },
     unsaveRecipe(state, action: PayloadAction<number>) {
       state.savedRecipes = state.savedRecipes.filter(
-        (r) => r.id !== action.payload,
+        r => r.id !== action.payload
       );
-      const storedRecipe = state.recipes.find((r) => r.id === action.payload);
+      const storedRecipe = state.recipes.find(r => r.id === action.payload);
       if (storedRecipe) {
         storedRecipe.isLiked = false;
       }

@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
-import { theme } from "../../../../theme";
+import { StyleSheet } from 'react-native';
+
+import { theme } from '../../../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,10 +10,10 @@ const styles = StyleSheet.create({
     paddingTop: 24,
   },
   imageContainer: {
-    position: "relative",
-    width: "100%",
+    position: 'relative',
+    width: '100%',
     aspectRatio: 4 / 3,
-    overflow: "hidden",
+    overflow: 'hidden',
     borderRadius: 40,
     shadowColor: theme.colors.black,
     shadowOffset: { width: 0, height: 24 },
@@ -21,27 +22,27 @@ const styles = StyleSheet.create({
     elevation: 12,
   },
   image: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
   gradientOverlay: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(28, 27, 26, 0.4)",
+    backgroundColor: 'rgba(28, 27, 26, 0.4)',
   },
   tagsContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 12,
     marginTop: 32,
-    flexWrap: "wrap",
+    flexWrap: 'wrap',
   },
   titleContainer: {
-    alignItems: "flex-start",
+    alignItems: 'flex-start',
     marginVertical: 16,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   titleWrapper: {
     flex: 1,
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   actionsContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 8,
   },
   actionButton: {
@@ -65,28 +66,28 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     gap: 24,
-    alignItems: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   ratingContainer: {
     gap: 6,
-    alignItems: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   infoCenterContainer: {
     height: 16,
     width: 1,
-    backgroundColor: "#dcc1b1",
+    backgroundColor: '#dcc1b1',
   },
   cuisineContainer: {
     gap: 6,
-    alignItems: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   detailContainer: {
     gap: 16,
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     paddingVertical: 32,
   },
   instructionContainer: {
@@ -94,14 +95,14 @@ const styles = StyleSheet.create({
     gap: 32,
   },
   instructionTitleContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   instructionStepContainer: {
     gap: 24,
   },
   ingredientContainer: {
-    backgroundColor: "#f2edea",
+    backgroundColor: '#f2edea',
     padding: 40,
     borderRadius: 32,
     gap: 32,

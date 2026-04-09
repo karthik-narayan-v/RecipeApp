@@ -1,10 +1,12 @@
-import React from "react";
-import { View } from "react-native";
-import AppIcon from "../../../../components/AppIcon";
-import { styles } from "./styles";
-import { theme } from "../../../../theme";
-import * as Icons from "lucide-react-native";
-import AppText from "../../../../components/AppText";
+import * as Icons from 'lucide-react-native';
+import React from 'react';
+import { View } from 'react-native';
+
+import AppIcon from '../../../../components/AppIcon';
+import AppText from '../../../../components/AppText';
+import { theme } from '../../../../theme';
+
+import { styles } from './styles';
 
 interface StatCardProps {
   iconName: IconName;
@@ -17,10 +19,20 @@ type IconName = keyof typeof Icons;
 const StatCard = ({ iconName, label, value }: StatCardProps) => (
   <View style={styles.card}>
     <AppIcon name={iconName} size={24} color={theme.colors.primary} />
-    <AppText variant="body" size="md" color={theme.colors.darkBrown} letterSpacing={1.2}>
+    <AppText
+      variant="body"
+      size="md"
+      color={theme.colors.darkBrown}
+      letterSpacing={1.2}
+    >
       {label}
     </AppText>
-    <AppText variant="headline" weight="bold" size="md" color={theme.colors.black}>
+    <AppText
+      variant="headline"
+      weight="bold"
+      size="md"
+      color={theme.colors.black}
+    >
       {value}
     </AppText>
   </View>

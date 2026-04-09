@@ -1,12 +1,14 @@
-import React from "react";
-import { Text } from "react-native";
-import { fontSizes, fontWeights, getFontFamily } from "../../theme/typography";
-import { AppTextProps } from "./types";
+import React from 'react';
+import { Text } from 'react-native';
+
+import { fontSizes, fontWeights, getFontFamily } from '../../theme/typography';
+
+import { AppTextProps } from './types';
 
 const AppText: React.FC<AppTextProps> = ({
-  variant = "body",
-  size = "md",
-  weight = "regular",
+  variant = 'body',
+  size = 'md',
+  weight = 'regular',
   letterSpacing = 0,
   color,
   children,

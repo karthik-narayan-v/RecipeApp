@@ -1,4 +1,4 @@
-export const safeApiCall = async (apiCall: () => Promise<any>) => {
+export const safeApiCall = async <T>(apiCall: () => Promise<T>) => {
   try {
     return await apiCall();
   } catch (error) {

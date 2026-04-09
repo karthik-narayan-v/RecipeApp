@@ -1,27 +1,29 @@
-import React from "react";
-import { ScrollView, View, TouchableOpacity } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../store";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RecipeStackParamList } from "../../../../navigation/recipe/navigator";
-import AppText from "../../../../components/AppText";
-import { theme } from "../../../../theme";
-import RecipeCard from "../../components/RecipeCard";
-import AppIcon from "../../../../components/AppIcon";
-import styles from "./styles";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React from 'react';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
+
+import AppIcon from '../../../../components/AppIcon';
+import AppText from '../../../../components/AppText';
+import { RecipeStackParamList } from '../../../../navigation/recipe/navigator';
+import { RootState } from '../../../../store';
+import { theme } from '../../../../theme';
+import RecipeCard from '../../components/RecipeCard';
+
+import styles from './styles';
 
 type RecipeSavedNavigationProp = StackNavigationProp<
   RecipeStackParamList,
-  "RecipeSaved"
+  'RecipeSaved'
 >;
 
 const RecipeSaved: React.FC = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<RecipeSavedNavigationProp>();
   const savedRecipes = useSelector(
-    (state: RootState) => state.recipe.savedRecipes,
+    (state: RootState) => state.recipe.savedRecipes
   );
 
   return (
@@ -53,7 +55,7 @@ const RecipeSaved: React.FC = () => {
             </AppText>
             <TouchableOpacity
               style={styles.browseButton}
-              onPress={() => navigation.navigate("RecipeHome")}
+              onPress={() => navigation.navigate('RecipeHome')}
               activeOpacity={0.8}
             >
               <AppText
@@ -78,7 +80,7 @@ const RecipeSaved: React.FC = () => {
               My Favorites ({savedRecipes.length})
             </AppText>
             <View style={styles.recipesGrid}>
-              {savedRecipes.map((recipe) => (
+              {savedRecipes.map(recipe => (
                 <RecipeCard
                   key={recipe.id}
                   image={recipe.image}
@@ -88,7 +90,7 @@ const RecipeSaved: React.FC = () => {
                   duration={recipe.cookTimeMinutes}
                   calories={recipe.caloriesPerServing}
                   onPress={() => {
-                    navigation.navigate("RecipeDetail", { id: recipe.id });
+                    navigation.navigate('RecipeDetail', { id: recipe.id });
                   }}
                 />
               ))}

@@ -1,9 +1,11 @@
-import { TouchableOpacity, View, Image } from "react-native";
-import styles from "./styles";
-import AppText from "../../../../components/AppText";
-import { theme } from "../../../../theme";
-import Chip from "../Chip";
-import { LinearGradient } from "expo-linear-gradient";
+import { LinearGradient } from 'expo-linear-gradient';
+import { TouchableOpacity, View, Image } from 'react-native';
+
+import AppText from '../../../../components/AppText';
+import { theme } from '../../../../theme';
+import Chip from '../Chip';
+
+import styles from './styles';
 
 type FeaturedRecipeCardProps = {
   image: string;
@@ -23,7 +25,7 @@ const FeaturedRecipeCard = ({
   <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.9}>
     <Image source={{ uri: image }} style={styles.image} resizeMode="cover" />
     <LinearGradient
-      colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.2)", "rgba(0,0,0,0.85)"]}
+      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.85)']}
       locations={[0, 0.4, 1]}
       style={styles.gradient}
     />
@@ -36,7 +38,7 @@ const FeaturedRecipeCard = ({
         />
         <Chip
           label={`${duration} MIN`}
-          backgroundColor={"#ffffff33"}
+          backgroundColor={'#ffffff33'}
           textColor={theme.colors.white}
         />
       </View>

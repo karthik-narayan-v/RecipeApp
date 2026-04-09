@@ -1,6 +1,6 @@
 export type SortParams = {
   sortBy?: string;
-  order?: "asc" | "desc";
+  order?: 'asc' | 'desc';
 };
 
 export type PaginationParams = {
